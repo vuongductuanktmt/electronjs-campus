@@ -1,0 +1,163 @@
+{
+  "name": "IoTCampusSlider",
+  "version": "1.0.0",
+  "description": "Application IoT Campus show slider",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron . --disable-http-cache --no-electron-connect",
+    "reinstall": "node ./tools/reinstall-node-modules.js",
+    "postinstall": "electron-builder install-app-deps",
+    "pack": "electron-builder --dir",
+    "build:mac": "electron-builder --mac",
+    "build:win": "electron-builder --win",
+    "build:linux": "electron-builder --linux",
+    "dev": "gulp dev & nodemon --watch . --exec 'npm test' -e html,css,js"
+  },
+  "build": {
+    "appId": "com.vng.iotcampus",
+    "asar": true,
+    "files": [
+      "**/*",
+      "!docs${/*}",
+      "!node_modules/@paulcbetts/cld/deps/cld${/*}"
+    ],
+    "copyright": "©2019 VNG",
+    "mac": {
+      "category": "public.app-category.productivity",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "linux": {
+      "category": "Chat;GNOME;GTK;Network;InstantMessaging",
+      "packageCategory": "GNOME;GTK;Network;InstantMessaging",
+      "description": "IoT Campus Slider Client for Linux",
+      "target": [
+        "deb",
+        "zip",
+        "AppImage",
+        "snap"
+      ],
+      "maintainer": "Akash Nimare <akash@zulipchat.com>",
+      "artifactName": "${productName}-${version}-${arch}.${ext}"
+    },
+    "deb": {
+      "synopsis": "IoT Campus Slider",
+      "afterInstall": "./scripts/debian-add-repo.sh",
+      "afterRemove": "./scripts/debian-uninstaller.sh"
+    },
+    "snap": {
+      "synopsis": "IoT Campus Slider"
+    },
+    "dmg": {
+      "background": "build/appdmg.png",
+      "icon": "build/icon.icns",
+      "iconSize": 100,
+      "title": "IoT Campus Slider",
+      "contents": [
+        {
+          "x": 380,
+          "y": 280,
+          "type": "link",
+          "path": "/Applications"
+        },
+        {
+          "x": 110,
+          "y": 280,
+          "type": "file"
+        }
+      ],
+      "window": {
+        "width": 500,
+        "height": 500
+      }
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis-web",
+          "arch": [
+            "x64",
+            "ia32"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "artifactName": "${productName}-Web-Setup-${version}.${ext}",
+      "publisherName": "IoT Campus Slider"
+    },
+    "nsis": {
+      "allowToChangeInstallationDirectory": true,
+      "oneClick": false,
+      "perMachine": false
+    }
+  },
+  "keywords": [
+    "Electron"
+  ],
+  "author": "Vuong Duc Tuan",
+  "devDependencies": {
+    "assert": "1.4.1",
+    "cp-file": "5.0.0",
+    "devtron": "1.4.0",
+    "electron": "^7.1.4",
+    "electron-builder": "^22.2.0",
+    "electron-packager": "^14.1.1",
+    "electron-connect": "0.6.2",
+    "electron-debug": "1.4.0",
+    "google-translate-api": "2.3.0",
+    "gulp": "4.0.0",
+    "gulp-tape": "0.0.9",
+    "htmlhint": "0.11.0",
+    "is-ci": "1.0.10",
+    "nodemon": "1.14.11",
+    "pre-commit": "1.2.2",
+    "spectron": "5.0.0",
+    "stylelint": "9.10.1",
+    "tap-colorize": "1.2.0",
+    "tape": "4.8.0",
+    "xo": "0.18.2"
+  },
+  "xo": {
+    "parserOptions": {
+      "sourceType": "script",
+      "ecmaFeatures": {
+        "globalReturn": true
+      }
+    },
+    "esnext": true,
+    "overrides": [
+      {
+        "files": "*.js",
+        "rules": {
+          "max-lines": [
+            "warn",
+            {
+              "max": 700,
+              "skipBlankLines": true,
+              "skipComments": true
+            }
+          ],
+          "no-warning-comments": 0,
+          "object-curly-spacing": 0,
+          "capitalized-comments": 0,
+          "no-else-return": 0,
+          "no-path-concat": 0,
+          "no-alert": 0,
+          "guard-for-in": 0,
+          "prefer-promise-reject-errors": 0,
+          "import/no-unresolved": 0,
+          "import/no-extraneous-dependencies": 0,
+          "no-prototype-builtins": 0
+        }
+      }
+    ],
+    "ignore": [
+      "tests/*.js",
+      "tools/locale-helper/*.js"
+    ],
+    "envs": [
+      "node",
+      "browser",
+      "mocha"
+    ]
+  }
+}
