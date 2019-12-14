@@ -1830,7 +1830,7 @@ body {
 .cid-ruv1vCFf4L .mbr-slider .carousel-indicators {
   position: absolute;
   bottom: 0;
-  margin-bottom: 0.5rem !important;
+  margin-bottom: 20vh !important;
 }
 .cid-ruv1vCFf4L .mbr-slider .carousel-indicators li {
   max-width: 20px;
