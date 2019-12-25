@@ -1,7 +1,7 @@
 {
-  "name": "IoTCampusSlider",
+  "name": "IotMap",
   "version": "1.0.0",
-  "description": "Application IoT Campus show slider",
+  "description": "Application IoT Map",
   "main": "main.js",
   "scripts": {
     "start": "electron . --disable-http-cache --no-electron-connect",
@@ -14,7 +14,7 @@
     "dev": "gulp dev & nodemon --watch . --exec 'npm test' -e html,css,js"
   },
   "build": {
-    "appId": "com.vng.iotcampus",
+    "appId": "com.vng.iotmapcampus",
     "asar": true,
     "files": [
       "**/*",
@@ -29,7 +29,7 @@
     "linux": {
       "category": "Chat;GNOME;GTK;Network;InstantMessaging",
       "packageCategory": "GNOME;GTK;Network;InstantMessaging",
-      "description": "IoT Campus Slider Client for Linux",
+      "description": "IoT Map Client for Linux",
       "target": [
         "deb",
         "zip",
@@ -40,18 +40,18 @@
       "artifactName": "${productName}-${version}-${arch}.${ext}"
     },
     "deb": {
-      "synopsis": "IoT Campus Slider",
+      "synopsis": "IoT Map",
       "afterInstall": "./scripts/debian-add-repo.sh",
       "afterRemove": "./scripts/debian-uninstaller.sh"
     },
     "snap": {
-      "synopsis": "IoT Campus Slider"
+      "synopsis": "IoT Map"
     },
     "dmg": {
       "background": "build/appdmg.png",
       "icon": "build/icon.icns",
       "iconSize": 100,
-      "title": "IoT Campus Slider",
+      "title": "IoT Map",
       "contents": [
         {
           "x": 380,
@@ -82,7 +82,7 @@
       ],
       "icon": "build/icon.ico",
       "artifactName": "${productName}-Web-Setup-${version}.${ext}",
-      "publisherName": "IoT Campus Slider"
+      "publisherName": "IoT Map"
     },
     "nsis": {
       "allowToChangeInstallationDirectory": true,
